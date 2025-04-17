@@ -1,3 +1,5 @@
+print("🔥 ETL STARTED")
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
@@ -45,16 +47,6 @@ agg.show()
 
 # ✅ Ghi vào ClickHouse
 try:
-    # agg.write \
-    #     .format("jdbc") \
-    #     .option("url", "jdbc:clickhouse://clickhouse:8123/default") \
-    #     .option("dbtable", "users_summary") \
-    #     .option("user", "default") \
-    #     .option("password", "thong123") \
-    #     .option("driver", "ru.yandex.clickhouse.ClickHouseDriver") \
-    #     .mode("append") \
-    #     .save()
-    
     agg.write.format("jdbc").options(
         url="jdbc:clickhouse://clickhouse:8123/default",
         dbtable="users_summary",
